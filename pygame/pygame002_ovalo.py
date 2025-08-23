@@ -14,7 +14,7 @@ centro = {
 r1 = 350
 r2 = 150
 
-cantidad_rectas = 2000
+cantidad_rectas = 16
 while running:
     event = pygame.event.poll()
     if event.type == pygame.QUIT:
@@ -31,4 +31,10 @@ while running:
         y2 = centro['y'] + r2*sin(angulo2)
         # print(f'Puntos=<{i},{x1},{y1},{x2},{y2}')
         pygame.draw.aaline(screen, (200, 200, 255), (x1, y1), (x2, y2))
+        factor = 0.2
+        x3 = factor*x1 + (centro['x'] - factor*centro['x'])
+        y3 = factor*y1 + (centro['y'] - factor*centro['y'])
+        x4 = factor*x2 + (centro['x'] - factor*centro['x'])
+        y4 = factor*y2 + (centro['y'] - factor*centro['y'])
+        pygame.draw.aaline(screen, (130, 80, 255), (x3, y3), (x4, y4))
     pygame.display.flip()
