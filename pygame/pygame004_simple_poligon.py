@@ -20,7 +20,7 @@ def poligono(canvas, lista_puntos, color):
     print(f'puntos={puntos}')
     p1 = puntos[0]
     linea = 0
-    for p2 in puntos[0:]:
+    for p2 in puntos[1:]:
         print(f'Linea={linea} p1={p1} p2={p2}')
         pygame.draw.aaline(canvas, (200, 200, 255), p1, p2)
         p1 = p2
