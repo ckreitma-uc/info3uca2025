@@ -3,6 +3,7 @@ colorama
 contourpy
 cssbeautifier
 cycler
+datetime
 djlint
 EditorConfig
 fonttools
