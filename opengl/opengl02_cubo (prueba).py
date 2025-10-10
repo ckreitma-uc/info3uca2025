@@ -1,9 +1,9 @@
 import sys
 from OpenGL import GL
-from OpenGL import GLU
-from OpenGL import GLUT
+from OpenGL import GLU 
+from OpenGL import GLUT 
 
-altura, ancho = 800, 800
+altura, ancho = 600, 600
 vertices = (
     (1, -1, -1),
     (1, 1, -1),
@@ -31,9 +31,8 @@ edges = (
 )
 
 
-def inicializar():
+def Cube():
     # Borrar la pantalla
-    GL.glClearColor(1, 1, 1, 1)
     GL.glClear(GL.GL_COLOR_BUFFER_BIT)
 
     # Selecciona la matriz de proyección
@@ -41,7 +40,7 @@ def inicializar():
     GL.glLoadIdentity()  # Inicializar la matriz.
 
     # Ángulo, ratio, near, far
-    GLU.gluPerspective(45, altura/ancho, 0.1, 50.0)
+    GLU.gluPerspective(45, altura/ancho, 0.1, 100.0)
 
     # Seleccionar la matriz modelview
     GL.glMatrixMode(GL.GL_MODELVIEW)
@@ -49,43 +48,18 @@ def inicializar():
     # Inicializar la matriz.
     GL.glLoadIdentity()
 
-    GL.glTranslatef(0.0, 0.0, -5.0)
+    GL.glTranslatef(0.0, 0.0, -5)
 
     # Ángulo,
-    GL.glRotatef(10, 0.3, 0.3, 0.3)
-
-
-def ejes():
-    # Eje x
-    GL.glBegin(GL.GL_LINES)
-    GL.glColor3f(1, 0, 0)
-    GL.glVertex3f(0, 0, 0)
-    GL.glVertex3f(1, 0, 0)
-
-    GL.glColor3f(0, 1, 0)
-    GL.glVertex3f(0, 0, 0)
-    GL.glVertex3f(0, 1, 0)
-
-    GL.glColor3f(0, 0, 1)
-    GL.glVertex3f(0, 0, 0)
-    GL.glVertex3f(0, 0, 1)
-
-    GL.glEnd()
-
-
-def cubo():
-    GL.glBegin(GL.GL_LINES)
-    GL.glColor3f(0, 0, 0)
+    #GL.glRotatef(45, 0, 0, 1)
     for edge in edges:
+        GL.glPushMatrix()
+        GL.glRotatef(0, 0, 0, 1)
+        GL.glBegin(GL.GL_LINES)
         for vertex in edge:
             GL.glVertex3fv(vertices[vertex])
-    GL.glEnd()
-
-
-def actualizar():
-    inicializar()
-    ejes()
-    cubo()
+        GL.glEnd()
+    GL.glPopMatrix()
     GL.glFlush()
 
 
@@ -95,7 +69,7 @@ def main():
     GLUT.glutInitWindowSize(altura, ancho)
     GLUT.glutInitWindowPosition(0, 0)
     GLUT.glutCreateWindow("Cubo 3D sencillo con lineas")
-    GLUT.glutDisplayFunc(actualizar)
+    GLUT.glutDisplayFunc(Cube)
     GLUT.glutMainLoop()
 
 
