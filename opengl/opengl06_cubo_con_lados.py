@@ -111,7 +111,7 @@ def Cube():
         cara(vertices, (0.7, 0.7, 0.1))
         GL.glPopMatrix()
 
-    # # Cara derecha #celeste
+    # # # Cara derecha #celeste
     if caras[2]:
         GL.glPushMatrix()
         GL.glTranslatef(lado, 0, 0)

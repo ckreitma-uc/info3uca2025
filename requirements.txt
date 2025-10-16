@@ -48,4 +48,4 @@ pyparsing
 python-dateutil
 six
 toml
-wrapt
+glfw
