@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Three.js - Fundamentals 3 cubes</title>
     <style>
       html, body {
@@ -15,12 +16,12 @@
         height: 100%;
         display: block;
       }
-    </style>    
+    </style>
   </head>
   <body>
     <canvas id="c"></canvas>
   </body>
-<script type="module">
+  <script type="module">
 import * as THREE from './threejs/three.module.js';
 
 function main() {
@@ -45,34 +46,38 @@ function main() {
 
   const radius = 0.4;  // ui: radius
   const height = 0.8;  // ui: height
-  const radialSegments = 16;  // ui: radialSegments
+  const radialSegments = 32;  // ui: radialSegments
   const geometry = new THREE.ConeGeometry(radius, height, radialSegments);
+
+  //Agregado
+  const cubogeometry = new THREE.BoxGeometry(0.5,0.5,0.5); 
 
   function makeInstance(geometry, color, x) {
     const material = new THREE.MeshPhongMaterial({color});
 
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    const g = new THREE.Mesh(geometry, material);
+    scene.add(g);
 
-    cube.position.x = x;
+    g.position.x = x;
 
-    return cube;
+    return g;
   }
 
-  const cubes = [
+  const conos = [
     makeInstance(geometry, 0x44aa88,  0),
     makeInstance(geometry, 0x8844aa, -2),
     makeInstance(geometry, 0xaa8844,  2),
+    makeInstance(cubogeometry, 0x22aaff,  -2.5),
   ];
 
   function render(time) {
     time *= 0.001;  // convert time to seconds
 
-    cubes.forEach((cube, ndx) => {
+    conos.forEach((cono, ndx) => {
       const speed = 1 + ndx * .1;
       const rot = time * speed;
-      cube.rotation.x = rot;
-      cube.rotation.y = rot;
+      cono.rotation.x = rot;
+      cono.rotation.y = rot;
     });
 
     function resizeRendererToDisplaySize(renderer) {
@@ -99,6 +104,5 @@ function main() {
 }
 
 main();
-</script>
+  </script>
 </html>
-

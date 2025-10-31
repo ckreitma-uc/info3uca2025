@@ -3,8 +3,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Sistema Solar (SOL) + Tierra </title>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Sistema Solar (SOL) + Tierra</title>
     <style>
     html, body {
         height: 100%;
@@ -47,7 +48,7 @@
     <div id="ui"></div>
     <img src="threejs08.svg" alt="Jerarquía">
   </body>
-<script type="module">
+  <script type="module">
 import * as THREE from './threejs/three.module.js';
 import {GUI} from './threejs/3rdparty/dat.gui.module.js';
 
@@ -69,7 +70,7 @@ function main() {
 
   {
     const color = 0xFFFFFF;
-    const intensity = 3;
+    const intensity = 1000;
     const light = new THREE.PointLight(color, intensity);
     scene.add(light);
   }
@@ -188,5 +189,5 @@ function main() {
 }
 
 main();
-</script>
+  </script>
 </html>

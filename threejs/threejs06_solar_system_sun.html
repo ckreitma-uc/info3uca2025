@@ -35,11 +35,11 @@ function main() {
   /********************* SOL ****************************************************/
   // use just one sphere for everything
   const radius = 1;
-  const widthSegments = 5;
-  const heightSegments = 5;
+  const widthSegments = 6;
+  const heightSegments = 6;
   const sphereGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
 
-  const sunMaterial = new THREE.MeshPhongMaterial({emissive: 0xFFFF00});
+  const sunMaterial = new THREE.MeshPhongMaterial({color: 0xFFAA00});
   const sunMesh = new THREE.Mesh(sphereGeometry, sunMaterial);
   sunMesh.scale.set(5, 5, 5);  // make the sun large
   scene.add(sunMesh);
@@ -48,10 +48,18 @@ function main() {
   /******************* LUZ **************************************************/
   {
     const color = 0xFFFFFF;
-    const intensity = 3;
+    const intensity = 800;
     const light = new THREE.PointLight(color, intensity);
+    light.position.x = 10;
     scene.add(light); //light isn't added to objects because doesn't need to be rotated (transformed)
   }
+
+  /******************** LUZ AMBIENTE *************************************/
+  {
+    const color = 0x404040;
+    const intensity = 50;
+    const light = new THREE.AmbientLight(color, intensity);
+    scene.add(light); //light isn't added to objects because doesn't need
 
   /******************** CAMARA *************************************/
   const fov = 40;
@@ -59,8 +67,8 @@ function main() {
   const near = 0.1;
   const far = 1000;
   const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-  camera.position.set(0, 50, 0);
-  camera.up.set(0, 0, 1);
+  camera.position.set(0, 0, 50);
+  camera.up.set(0, 1, 0);
   camera.lookAt(0, 0, 0);
 
   function render(time) {
@@ -91,6 +99,7 @@ function main() {
   }
   requestAnimationFrame(render);
 
+}
 }
 
 main();
