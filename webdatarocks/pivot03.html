@@ -1,0 +1,20 @@
+<html>
+    <head></head>
+    <body>
+        <div id="wdr-component"></div>
+        <link href="./lib/webdatarocks.min.css" rel="stylesheet" />
+        <script src=".lib/webdatarocks.toolbar.min.js"></script>
+        <script src="./lib/webdatarocks.js"></script>
+        <script>
+var pivot = new WebDataRocks({
+	container: "#wdr-component",
+	toolbar: true,
+	report: {
+		dataSource: {
+			filename: "./data/ventas2.json"
+		}
+	}
+});
+        </script>
+    </body>
+</html>

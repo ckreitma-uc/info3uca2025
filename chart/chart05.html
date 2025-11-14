@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- https://www.chartjs.org/docs/latest/general/data-structures.html -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Bajar Archivos</title>
+        <script src="./lib/chart.min.js"></script>
+    </head>
+    <body>
+        <h1>Ejemplo 5 - Bajar Archivo</h1>
+        <canvas id="grafica"></canvas>
+        <script>
+        // Obtener una referencia al elemento canvas del DOM
+        const $grafica = document.querySelector("#grafica");
+        // Las etiquetas son las porciones de la gráfica
+        const etiquetas = ["Ventas", "Donaciones", "Trabajos", "Publicidad"]
+        // Podemos tener varios conjuntos de datos. Comencemos con uno
+        const datosIngresos = {
+            data: [1500, 400, 2000, 7000], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+            // Ahora debería haber tantos background colors como datos, es decir, para este ejemplo, 4
+            backgroundColor: [
+                'rgba(200, 20, 50, 0.2)', // Color de fondo
+                'rgba(12, 162, 235, 0.2)', // Color de fondo
+                'rgba(54, 200, 50, 0.2)', // Color de fondo
+                'rgba(54, 88, 235, 0.3)',
+            ],// Color de fondo
+            borderColor: [
+                'rgba(163,221,203,1)',
+                'rgba(232,233,161,1)',
+                'rgba(230,181,102,1)',
+                'rgba(229,112,126,1)',
+            ],// Color del borde
+            borderWidth: 1,// Ancho del borde
+        };
+        var myChart = new Chart($grafica, {
+            type: 'pie',// Tipo de gráfica. Puede ser dougnhut o pie
+            data: {
+                labels: etiquetas,
+                datasets: [
+                    datosIngresos,
+                    // Aquí más datos...
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,                
+                animation: {
+                    onComplete: function() {
+                        //console.log(myChart.toBase64Image());
+                    }
+                }
+            }
+        });
+
+        // El archivo descargado no contiene info.
+        var image = myChart.toBase64Image();
+        //console.log(image);
+
+        var a = document.createElement('a');
+        a.href = image;
+        a.innerHTML = 'Descargar';
+        a.download = 'my_file_name.png';
+        document.getElementsByTagName('body')[0].appendChild(a);
+
+        // Trigger the download
+        a.click();
+        </script>
+    </body>
+</html>
